@@ -1,23 +1,23 @@
 name: Run autotests
 
-on:
-    # Ручной запуск workflow через интерфейс GitHub
-  workflow_dispatch:
-    inputs:
-      deployment_target:
-        description: select tests to run
-        required: true
-        type: choice
-        default: all
-        options:
-          - all
 # on:
-#   push:
-#     branches:
-#       - main  # Укажите ветку, которую вы используете для GitHub Pages (обычно main или gh-pages)
-#   pull_request:
-#     branches:
-#       - main
+#     # Ручной запуск workflow через интерфейс GitHub
+#   workflow_dispatch:
+#     inputs:
+#       deployment_target:
+#         description: select tests to run
+#         required: true
+#         type: choice
+#         default: all
+#         options:
+#           - all
+on:
+  push:
+    branches:
+      - main  # Укажите ветку, которую вы используете для GitHub Pages (обычно main или gh-pages)
+  pull_request:
+    branches:
+      - main
 
 jobs:
   run-tests:
@@ -49,11 +49,11 @@ jobs:
         if: always() # Убедитесь, что уведомление отправляется независимо от результата тестов
         run: |
           if [ "${{ job.status }}" == "success" ]; then
-            MESSAGE="✅ Тесты KOKOC TECH успешно завершены 🏁"
+            MESSAGE="✅ Тесты BugHunter успешно завершены 🏁"
           elif [ "${{ job.status }}" == "failure" ]; then
-            MESSAGE="❌ Тесты KOKOC TECH завершились с ошибкой 🏁"
+            MESSAGE="❌ Тесты BugHunter завершились с ошибкой 🏁"
           else
-            MESSAGE="⏹️ Тесты KOKOC TECH были отменены 🏁"
+            MESSAGE="⏹️ Тесты BugHunter были отменены 🏁"
           fi
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
           -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \

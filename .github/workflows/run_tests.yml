@@ -1,23 +1,23 @@
 name: Run autotests
 
-# on:
-#     # Ручной запуск workflow через интерфейс GitHub
-#   workflow_dispatch:
-#     inputs:
-#       deployment_target:
-#         description: select tests to run
-#         required: true
-#         type: choice
-#         default: all
-#         options:
-#           - all
 on:
-  push:
-    branches:
-      - main  # Укажите ветку, которую вы используете для GitHub Pages (обычно main или gh-pages)
-  pull_request:
-    branches:
-      - main
+    # Ручной запуск workflow через интерфейс GitHub
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: select tests to run
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+# on:
+#   push:
+#     branches:
+#       - main  # Укажите ветку, которую вы используете для GitHub Pages (обычно main или gh-pages)
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   run-tests:

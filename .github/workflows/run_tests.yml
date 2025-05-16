@@ -1,4 +1,4 @@
-name: Run autotests
+# name: Run autotests
 
 # on:
 #     # Ручной запуск workflow через интерфейс GitHub
@@ -11,10 +11,16 @@ name: Run autotests
 #         default: all
 #         options:
 #           - all
+name: Run Tests Before Deploying to GitHub Pages
+
 on:
   push:
     branches:
-      - main  # Укажите ветку, которую вы используете для GitHub Pages (обычно main или gh-pages)
+      - main  # Укажите ветку, которую вы используете для GitHub Pages
+    paths:
+      - 'src/**'  # Укажите пути, которые влияют на сайт (например, исходный код)
+      - 'tests/**'  # Убедитесь, что изменения в тестах также триггерят тесты
+      - 'public/**'  # Если публикуемая директория находится в public/
   pull_request:
     branches:
       - main
